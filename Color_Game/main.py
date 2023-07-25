@@ -5,11 +5,13 @@ colours = ['Red', 'Blue', 'Green', 'Yellow', 'Orange', 'Purple', 'Pink', 'Black'
 score = 0
 timeleft = 30
 
+
 def start_game(event):
     global timeleft
     if timeleft == 30:
         countdown()
     next_colour()
+
 
 def next_colour():
     global score, timeleft
@@ -26,6 +28,7 @@ def next_colour():
         label.config(fg=colours[1], text=colours[0])
         score_label.config(text=f"Score: {score}")
 
+
 def countdown():
     global timeleft
     if timeleft > 0:
@@ -35,14 +38,17 @@ def countdown():
     else:
         record_highest_score()
 
+
 def record_highest_score():
     highest_score = load_highest_score()
     if score > highest_score:
         save_highest_score(score)
 
+
 def save_highest_score(score):
     with open("highest_score.txt", "w") as file:
         file.write(f"The highest score is: {score}")
+
 
 def load_highest_score():
     try:
@@ -50,6 +56,7 @@ def load_highest_score():
             return int(file.read())
     except FileNotFoundError:
         return 0
+
 
 window = tk.Tk()
 font = 'Helvetica'
